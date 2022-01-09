@@ -1,13 +1,16 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import-normalize;
+
+:root {
+  --primary-bg-color: #f6f6f7;
+  --primary-font-family: ;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  background-color: var(--primary-bg-color);
+  font-family: sans-serif;
 }
+
+/* @font-face {
+  font-family: 'SFMono';
+  src: local('SFMono'), url(./assets/fonts/SFMono-Bold.otf) format('otf');
+} */
