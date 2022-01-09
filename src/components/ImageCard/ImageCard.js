@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function ImageCard() {
-  return <div></div>;
+export default function ImageCard({ date }) {
+  return <div>`${date} `</div>;
 }

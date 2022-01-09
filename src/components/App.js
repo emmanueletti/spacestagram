@@ -6,16 +6,16 @@ import Loading from './Loading/Loading';
 export default function App() {
   // example of NASA API usage
   // https://api.nasa.gov/planetary/apod?api_key=LuKnqONyCAwEEXTlhIrm7e1mgdAldqBnXlIFIeQp
-  const [images, setImages] = useState([]);
+  const [imagesData, setImagesData] = useState([]);
 
   useEffect(() => {
     fetch(
-      `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_NOT_SECURE_API_KEY}&start_date=2021-12-01&end_date=2022-01-08`
+      `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_NOT_SECURE_API_KEY}&start_date=2022-01-01&end_date=2022-01-08`
     )
       .then((resp) => resp.json())
       .then((data) => {
-        console.log('image recieved');
-        setImages((prev) => data);
+        console.log('image recieved', data);
+        setImagesData((prev) => data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -27,7 +27,11 @@ export default function App() {
         <p>Brought to you by NASA's Astronomy of the Day API</p>
       </header>
       <main>
-        {images.length ? <ImageCardList images={images} /> : <Loading />}
+        {imagesData.length ? (
+          <ImageCardList imagesData={imagesData} />
+        ) : (
+          <Loading />
+        )}
       </main>
     </div>
   );
