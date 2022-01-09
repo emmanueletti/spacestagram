@@ -1,0 +1,43 @@
+@import 'normalize.css';
+@import '~@shopify/polaris-tokens/dist/index';
+@import './partials/custom-reset';
+@import './partials/media-queries';
+
+body {
+  background-color: $color-sky-lighter;
+  font-family: $font-stack-base;
+  line-height: 1.4;
+}
+
+h1 {
+  color: $color-ink;
+  font-size: 1.2rem;
+}
+
+h4 {
+  color: $color-ink-light;
+  font-size: 0.95rem;
+}
+
+p {
+  color: $color-ink-light;
+  font-size: 0.95rem;
+}
+
+button {
+  padding: 0.3em 1em;
+  background-color: $color-white;
+  color: $color-ink;
+  border-radius: 3px;
+  border: 1.5px solid $color-sky-dark;
+}
+
+button:hover,
+button:focus {
+  outline: 2px solid $color-blue;
+  background-color: $color-sky;
+}
+
+button:active {
+  background-color: $color-sky-dark;
+}
