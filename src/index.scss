@@ -1,7 +1,11 @@
 @import 'normalize.css';
 @import '~@shopify/polaris-tokens/dist/index';
 @import './partials/custom-reset';
-@import './partials/media-queries';
+
+:root {
+  --medium-screen-breakpoint: 700px;
+  --large-screen-breakpoint: 1200px;
+}
 
 body {
   background-color: $color-sky-lighter;

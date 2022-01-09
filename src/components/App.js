@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './App.module.css';
+import styles from './App.module.scss';
 import testData from '../lib/testData';
 import ImageCardList from './ImageCardList/ImageCardList';
 import Loading from './Loading/Loading';
@@ -28,7 +28,7 @@ export default function App() {
         <h1>Spacestagram</h1>
         <h4>Brought to you by NASA's Astronomy Photo of the Day (APOD) API</h4>
       </header>
-      <main>
+      <main className={styles['main-content-container']}>
         {imagesData.length ? (
           <ImageCardList imagesData={imagesData} />
         ) : (

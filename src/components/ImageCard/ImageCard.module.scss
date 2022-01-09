@@ -6,6 +6,10 @@
   border-radius: 5px;
   border: 1px solid $color-sky;
   box-shadow: 1px 1px $color-sky;
+  @media only screen and (min-width: 700px) {
+    max-width: 500px;
+    flex-grow: 1;
+  }
 }
 
 .image {
@@ -16,4 +20,9 @@
 
 .card-text-container {
   padding: 1rem;
+  p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
