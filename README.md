@@ -19,5 +19,6 @@ A React app to share images from one of NASA's image API.
 
 - change from flexbox to responsive grid
 - change grid to a tile layout to account for varying card heights
+- polaris components best practises - forms, etc
 
 ## Ways to make the app better
