@@ -2,15 +2,22 @@
 
 A React app to share images from one of NASA's image API.
 
-TODO:
+## TODO Features
 
-- add ability to expand each individual card
-- change from flexbox to responsive grid
-- change grid to a tile layout to account for varying card heights
 - add ability to like photos
+- add a date picker
+- add ability to expand each individual card
 - save the like photos to local storage and check for them on page reload
 - add loading state
   - shimmer effect on card skeleton?
-- add a date picker
-- paginate results?
+- back to top button
 - add tests
+- JSDOC
+- add callback state handler for each component
+
+## TODO Styling
+
+- change from flexbox to responsive grid
+- change grid to a tile layout to account for varying card heights
+
+## Ways to make the app better
