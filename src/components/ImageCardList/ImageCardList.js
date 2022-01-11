@@ -1,7 +1,11 @@
 import React, { useContext } from 'react';
 import { ImagesDataContext } from '../../Providers/ImagesDataProvider';
+
+// COMPONENTS
 import ImageCardItem from '../ImageCardItem/ImageCardItem';
 import Loading from '../Loading/Loading';
+
+// STYLES
 import styles from './ImageCardList.module.scss';
 
 export default function ImageCardList() {

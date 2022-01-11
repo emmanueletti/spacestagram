@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 // COMPONENTS
@@ -6,31 +6,44 @@ import { ImagesDataContext } from '../../Providers/ImagesDataProvider';
 import Loading from '../Loading/Loading';
 
 // CUSTOM HOOKS
-import useLocalStorage from '../../hooks/useLocalStorage';
 import usePrintOrderForm from '../../hooks/usePrintOrderForm';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 // STYLES
 import styles from './PrintOrderForm.module.scss';
 
 export default function PrintOrderForm() {
-  const [state, updateQuantity, getQuote] = usePrintOrderForm();
-
+  const providedImages = useContext(ImagesDataContext);
   let params = useParams();
-  const filteredImage = useContext(ImagesDataContext).filter(
+  const filteredImage = providedImages.filter(
     (image) => image.date === params.imageDate
   );
 
-  // Save image info to localstorage for when user navigates back to print order page
-  const [imageData] = useLocalStorage('imageData', {
-    url: filteredImage[0]?.url,
-    title: filteredImage[0]?.title,
+  const [state, updateQuantity, getQuote] = usePrintOrderForm();
+
+  const [localImage, setLocalImage] = useLocalStorage('image', {
+    url: '',
+    title: '',
   });
+
+  // On initial load, and everytime providedImages internally changes (due to page refresh
+  // and broser naviagtion), save info to
+  // local storage
+  useEffect(() => {
+    if (!filteredImage[0]) return;
+    if (filteredImage[0].date !== localImage.date) {
+      setLocalImage({
+        url: filteredImage[0]?.url,
+        title: filteredImage[0]?.title,
+      });
+    }
+  }, [providedImages]);
 
   return (
     <section className={styles['main-container']}>
       <div className={styles['image-container']}>
-        {imageData.url ? (
-          <img src={imageData?.url} alt={imageData.title} />
+        {localImage.url ? (
+          <img src={localImage.url} alt={localImage.title} />
         ) : (
           <Loading
             style={{

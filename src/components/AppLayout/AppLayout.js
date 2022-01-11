@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
+
+// STYLES
 import styles from './AppLayout.module.scss';
+
+// ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+
+// COMPONENTS
 import Button from '../Button/Button';
 
 export default function AppLayout({ children }) {
