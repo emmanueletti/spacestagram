@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
+// STYLES
 import './index.scss';
+
+// COMPONENTS
 import App from './components/App';
 
 ReactDOM.render(
