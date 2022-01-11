@@ -8,7 +8,7 @@ export default function ImagesDataProvider({ children }) {
   // Fetch image from NASA APOD API
   useEffect(() => {
     fetch(
-      `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_NOT_SECURE_API_KEY}&start_date=2022-01-01`
+      `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}&start_date=2022-01-01`
     )
       .then((resp) => resp.json())
       .then((data) => {
