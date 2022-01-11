@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Spacestagram
 
 A React app that displays images from NASA's Astronomy Photo of the Day.
 The images start from the beginning of 2022 and increases with each passing day.
