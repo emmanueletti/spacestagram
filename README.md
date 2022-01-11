@@ -9,7 +9,7 @@ This was also an experiment with CSS Modules.
 - User can see a loading screen while they wait for the data from NASA's API
 - Users can like and unlike an image
 - Users can click a button to navigate back to the top of the pages
-- Users can get a quote for a framed fine art print of each image
+- Users can get a quote for a framed fine art print of an image (but not video)
 
 ### Dependencies
 
@@ -26,7 +26,3 @@ This was also an experiment with CSS Modules.
   - shipping speed
   - frame color
   - image print size
-
-TODO
-
-- deploy!
