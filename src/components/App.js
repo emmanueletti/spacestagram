@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import ImageCardList from './ImageCardList/ImageCardList';
 import PrintOrderForm from './PrintOrderForm/PrintOrderForm';
 import AppLayout from './AppLayout/AppLayout';
@@ -15,7 +13,9 @@ export default function App() {
           <Route path='order-prints/:imageDate' element={<PrintOrderForm />} />
           <Route
             path='*'
-            element={<p style={{ padding: '1rem' }}>Uh Oh, something broke</p>}
+            element={
+              <p style={{ padding: '1rem' }}>Uh Oh, something went wrong</p>
+            }
           />
         </Routes>
       </AppLayout>

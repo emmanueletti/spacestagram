@@ -1,19 +1,16 @@
 @import '~@shopify/polaris-tokens/dist/index';
 
-.container {
+.main-container {
   width: 95%;
   margin: 0 auto;
 }
 
-.main-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  grid-gap: 1rem;
+.content-container {
   position: relative;
   margin-bottom: 110px;
 }
 
-.btn__navigate-to-top {
+.scroll-to-top {
   position: fixed;
   bottom: 20px;
   right: 20px;

@@ -28,7 +28,6 @@ The images start from the beginning of 2022 and increases with each passing day.
 
 TODO
 
-- refactor (especially order form)
-- clean up classnames
-- add environment flag for nasa fetch
+- refactor order form
+- disable order print button if link is a video
 - deploy!

@@ -1,13 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Button from '../Button/Button';
 import { ImagesDataContext } from '../../Providers/ImagesDataProvider';
 import styles from './PrintOrderForm.module.scss';
 
 export default function PrintOrderForm() {
   const ImagesData = useContext(ImagesDataContext);
   let params = useParams();
+
   const image = ImagesData.filter((image) => image.date === params.imageDate);
+
   const [quantity, setQuantity] = useState(1);
   const [quote, setQuote] = useState({
     unitCosts: '0.00',
@@ -19,7 +20,7 @@ export default function PrintOrderForm() {
     setQuantity((prev) => {
       if (e.target.value > 20) return 20;
       if (e.target.value < 0) return 1;
-      return e.target.value;
+      return Math.round(e.target.value);
     });
   };
 
@@ -60,34 +61,38 @@ export default function PrintOrderForm() {
   };
 
   return (
-    <div>
-      <img style={{ width: '100%' }} src={image[0].url} alt={image[0].title} />
-      <h2>Framed Fine Art Print</h2>
-      <p>
-        High quality Giclee print on sustainably sourced paper. Framed in a
-        simple black classically styled wooden frame with "Tru View Museum Glass
-        glaze". Express shipped right to your Canadian address.{' '}
-      </p>
-      <a href='https://www.prodigi.com/products/framed-prints/classic-frames/'>
-        Powered by Prodigi
-      </a>
-      <p>Print: ${quote.unitCosts}</p>
-      <p>Shipping: ${quote.shipping}</p>
-      <p>Total Cost: ${quote.totalCosts} </p>
-      <label htmlFor='quantity'>Quantity (1-20) </label>
-      <input
-        name='quantity'
-        type='number'
-        placeholder='1'
-        min='1'
-        max='20'
-        value={quantity}
-        onChange={handleQuanityChange}
-        className={styles.input}
-      />
-      <button className={styles.button} onClick={getQuote}>
-        GET QUOTE
-      </button>
+    <div className={styles['main-container']}>
+      <div className={styles['image-container']}>
+        <img src={image[0].url} alt={image[0].title} />
+      </div>
+      <div>
+        <h2>Framed Fine Art Print</h2>
+        <p>
+          High quality Giclee printed on sustainably sourced paper and frames in
+          a classic black wooden frame. Express shipped right to your Canadian
+          address.
+        </p>
+        <a href='https://www.prodigi.com/products/framed-prints/classic-frames/'>
+          Powered by Prodigi
+        </a>
+        <p>Print: ${quote.unitCosts}</p>
+        <p>Shipping: ${quote.shipping}</p>
+        <p>Total Cost: ${quote.totalCosts} </p>
+        <label htmlFor='quantity'>Quantity (1-20) </label>
+        <input
+          name='quantity'
+          type='number'
+          placeholder='1'
+          min='1'
+          max='20'
+          value={quantity}
+          onChange={handleQuanityChange}
+          className={styles.input}
+        />
+        <button className={styles.button} onClick={getQuote}>
+          GET QUOTE
+        </button>
+      </div>
     </div>
   );
 }
