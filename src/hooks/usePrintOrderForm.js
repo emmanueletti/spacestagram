@@ -16,32 +16,9 @@ export default function usePrintOrderForm() {
   };
 
   const getQuote = () => {
-    const config = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-Key': process.env.REACT_APP_NOT_SECURE_PRODIGI_SANDBOX_API_KEY,
-      },
-      body: JSON.stringify({
-        shippingMethod: 'Express',
-        destinationCountryCode: 'CA',
-        currencyCode: 'USD',
-        items: [
-          {
-            sku: 'GLOBAL-CFP-11X14',
-            copies: state.quantity,
-            attributes: { color: 'black' },
-            assets: [{ printArea: 'default' }],
-          },
-        ],
-      }),
-    };
-
-    setState((prev) => {
-      return { ...prev, loading: true };
-    });
-
-    fetch('https://api.sandbox.prodigi.com/v4.0/quotes', config)
+    fetch(
+      `https://etti-personal-cors-proxy.herokuapp.com/get-quote?quantity=${state.quantity}`
+    )
       .then((resp) => resp.json())
       .then((data) => {
         const unitCosts = data.quotes[0].costSummary.items.amount;
