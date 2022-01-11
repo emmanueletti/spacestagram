@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './AppLayout.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import Button from '../Button/Button';
 
 export default function AppLayout({ children }) {
   const [scrollBtn, setScrollBtn] = useState(false);
@@ -35,9 +36,20 @@ export default function AppLayout({ children }) {
       </header>
       <main className={styles['content-container']}>{children}</main>
       {scrollBtn && (
-        <button onClick={scrollToTop} className={styles['scroll-to-top']}>
+        <Button
+          handleClick={scrollToTop}
+          style={{
+            position: 'fixed',
+            bottom: ' 20px',
+            right: '20px',
+            borderRadius: '50%',
+            height: '80px',
+            width: ' 80px',
+            backgroundColor: '#919eab',
+            color: 'white',
+          }}>
           <FontAwesomeIcon icon={faArrowUp} size='2x' />
-        </button>
+        </Button>
       )}
     </div>
   );

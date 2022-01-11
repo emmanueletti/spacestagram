@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ImagesDataContext } from '../../Providers/ImagesDataProvider';
+import Loading from '../Loading/Loading';
 import styles from './PrintOrderForm.module.scss';
 
 export default function PrintOrderForm() {
@@ -9,6 +10,14 @@ export default function PrintOrderForm() {
 
   const image = ImagesData.filter((image) => image.date === params.imageDate);
 
+  // cache data in local storage state for when user comes back to the page via browser back
+  // button
+  const [imageData, setImageData] = useState({
+    url: image[0].url,
+    title: image[0].title,
+  });
+
+  const [loading, setLoading] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [quote, setQuote] = useState({
     unitCosts: '0.00',
@@ -47,6 +56,7 @@ export default function PrintOrderForm() {
       }),
     };
 
+    setLoading((prev) => true);
     fetch('https://api.sandbox.prodigi.com/v4.0/quotes', config)
       .then((resp) => resp.json())
       .then((data) => {
@@ -56,14 +66,15 @@ export default function PrintOrderForm() {
         setQuote((prev) => {
           return { ...prev, unitCosts, shipping, totalCosts };
         });
+        setLoading((prev) => false);
       })
       .catch((err) => new Error(err));
   };
 
   return (
-    <div className={styles['main-container']}>
+    <section className={styles['main-container']}>
       <div className={styles['image-container']}>
-        <img src={image[0].url} alt={image[0].title} />
+        <img src={imageData.url} alt={imageData.title} />
       </div>
       <div>
         <h2>Framed Fine Art Print</h2>
@@ -75,9 +86,16 @@ export default function PrintOrderForm() {
         <a href='https://www.prodigi.com/products/framed-prints/classic-frames/'>
           Powered by Prodigi
         </a>
-        <p>Print: ${quote.unitCosts}</p>
-        <p>Shipping: ${quote.shipping}</p>
-        <p>Total Cost: ${quote.totalCosts} </p>
+        {quote.totalCosts !== '0.00' && (
+          <>
+            <p>Print: ${quote.unitCosts}</p>
+            <p>Shipping: ${quote.shipping}</p>
+            <p>Total Cost: ${quote.totalCosts} </p>
+          </>
+        )}
+        {loading && (
+          <Loading style={{ textAlign: 'center', margin: '1rem 0' }} />
+        )}
         <label htmlFor='quantity'>Quantity (1-20) </label>
         <input
           name='quantity'
@@ -93,6 +111,6 @@ export default function PrintOrderForm() {
           GET QUOTE
         </button>
       </div>
-    </div>
+    </section>
   );
 }

@@ -12,7 +12,18 @@ export default function ImageCardList() {
 
   return (
     <section className={styles['main-container']}>
-      {images.length ? images : <Loading />}
+      {images.length ? (
+        images
+      ) : (
+        <Loading
+          style={{
+            height: '60vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        />
+      )}
     </section>
   );
 }

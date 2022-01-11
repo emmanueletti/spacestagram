@@ -41,7 +41,11 @@ export default function ImageCard({ date, title, url, explanation }) {
               <FontAwesomeIcon icon={farHeart} />
             )}
           </Button>
-          <Button handleClick={navigateToOrderPage}>Order Print</Button>
+          <Button
+            style={{ backgroundColor: '#50b83c', color: 'white' }}
+            handleClick={isVideo ? null : navigateToOrderPage}>
+            Order Print
+          </Button>
         </div>
       </div>
     </div>
