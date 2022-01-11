@@ -1,11 +1,18 @@
 @import '~@shopify/polaris-tokens/dist/index';
 
+.main-container {
+  a {
+    display: block;
+    margin-bottom: 1rem;
+  }
+}
 .image-container {
   img {
     width: 100%;
     border-radius: 5px;
   }
 }
+
 .input {
   padding: 0.5em;
   width: 50px;

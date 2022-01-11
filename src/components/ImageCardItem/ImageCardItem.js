@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 
+// STYLES
 import styles from './ImageCardItem.module.scss';
+
+// COMPONENTS
 import Button from '../Button/Button';
 
 export default function ImageCard({ date, title, url, explanation }) {
