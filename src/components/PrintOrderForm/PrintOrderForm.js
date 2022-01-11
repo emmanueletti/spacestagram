@@ -9,15 +9,16 @@ export default function PrintOrderForm() {
   const image = ImagesData.filter((image) => image.date === params.imageDate);
   const [orderForm, setOrderForm] = useState({});
   const [quote, setQuote] = useState({
-    unitCosts: '0.00',
+    unitCosts: '5.00',
     shipping: '0.00',
-    totalCost: '0.00',
+    totalCosts: '0.00',
   });
 
   // 11x14 print
   // sku - GLOBAL-CFP-11X14
   // Classic Frame Fine Art Print No Mount / No Mat Perspex Glaze
   const getQuote = (e) => {
+    console.log('fired');
     e.preventDefault();
     const config = {
       method: 'POST',
@@ -42,7 +43,14 @@ export default function PrintOrderForm() {
 
     fetch('https://api.sandbox.prodigi.com/v4.0/quotes', config)
       .then((resp) => resp.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        const unitCosts = data.quotes[0].costSummary.items.amount;
+        const shipping = data.quotes[0].costSummary.shipping.amount;
+        const totalCosts = data.quotes[0].costSummary.totalCost.amount;
+        setQuote((prev) => {
+          return { ...prev, unitCosts, shipping, totalCosts };
+        });
+      })
       .catch((err) => new Error(err));
   };
 
@@ -60,53 +68,8 @@ export default function PrintOrderForm() {
       </a>
       <p>Print: ${quote.unitCosts}</p>
       <p>Shipping: ${quote.shipping}</p>
-      <p>Total Cost: ${quote.totalCost} </p>
+      <p>Total Cost: ${quote.totalCosts} </p>
       <Button handleClick={getQuote}>GET QUOTE</Button>
-      <form>
-        <fieldset id='sign_up'>
-          <legend>Order Form</legend>
-          <div>
-            <label class='db fw6 lh-copy f6' htmlFor='email-address'>
-              Email
-            </label>
-            <input
-              class='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
-              type='email'
-              name='email-address'
-              id='email-address'
-            />
-          </div>
-          <div class='mv3'>
-            <label class='db fw6 lh-copy f6' htmlFor='password'>
-              Password
-            </label>
-            <input
-              class='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
-              type='password'
-              name='password'
-              id='password'
-            />
-          </div>
-          <label class='pa0 ma0 lh-copy f6 pointer'>
-            <input type='checkbox' /> Remember me
-          </label>
-        </fieldset>
-        <div class=''>
-          <input
-            class='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib'
-            type='submit'
-            value='Sign in'
-          />
-        </div>
-        <div class='lh-copy mt3'>
-          <a href='#0' class='f6 link dim black db'>
-            Sign up
-          </a>
-          <a href='#0' class='f6 link dim black db'>
-            Forgot your password?
-          </a>
-        </div>
-      </form>
     </div>
   );
 }

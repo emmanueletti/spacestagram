@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import testData from '../lib/testData';
 import ImageCardList from './ImageCardList/ImageCardList';
 import PrintOrderForm from './PrintOrderForm/PrintOrderForm';
 import AppLayout from './AppLayout/AppLayout';
@@ -10,21 +10,14 @@ export default function App() {
   return (
     <ImagesDataProvider>
       <AppLayout>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<ImageCardList />} />
-            <Route
-              path='order-prints/:imageDate'
-              element={<PrintOrderForm />}
-            />
-            <Route
-              path='*'
-              element={
-                <p style={{ padding: '1rem' }}>Uh Oh, something broke</p>
-              }
-            />
-          </Routes>
-        </BrowserRouter>
+        <Routes>
+          <Route path='/' element={<ImageCardList />} />
+          <Route path='order-prints/:imageDate' element={<PrintOrderForm />} />
+          <Route
+            path='*'
+            element={<p style={{ padding: '1rem' }}>Uh Oh, something broke</p>}
+          />
+        </Routes>
       </AppLayout>
     </ImagesDataProvider>
   );
