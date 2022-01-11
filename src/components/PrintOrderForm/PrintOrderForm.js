@@ -2,23 +2,28 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Button from '../Button/Button';
 import { ImagesDataContext } from '../../Providers/ImagesDataProvider';
+import styles from './PrintOrderForm.module.scss';
 
 export default function PrintOrderForm() {
   const ImagesData = useContext(ImagesDataContext);
   let params = useParams();
   const image = ImagesData.filter((image) => image.date === params.imageDate);
-  const [orderForm, setOrderForm] = useState({});
+  const [quantity, setQuantity] = useState(1);
   const [quote, setQuote] = useState({
-    unitCosts: '5.00',
+    unitCosts: '0.00',
     shipping: '0.00',
     totalCosts: '0.00',
   });
 
-  // 11x14 print
-  // sku - GLOBAL-CFP-11X14
-  // Classic Frame Fine Art Print No Mount / No Mat Perspex Glaze
+  const handleQuanityChange = (e) => {
+    setQuantity((prev) => {
+      if (e.target.value > 20) return 20;
+      if (e.target.value < 0) return 1;
+      return e.target.value;
+    });
+  };
+
   const getQuote = (e) => {
-    console.log('fired');
     e.preventDefault();
     const config = {
       method: 'POST',
@@ -33,7 +38,7 @@ export default function PrintOrderForm() {
         items: [
           {
             sku: 'GLOBAL-CFP-11X14',
-            copies: 1,
+            copies: quantity,
             attributes: { color: 'black' },
             assets: [{ printArea: 'default' }],
           },
@@ -69,7 +74,20 @@ export default function PrintOrderForm() {
       <p>Print: ${quote.unitCosts}</p>
       <p>Shipping: ${quote.shipping}</p>
       <p>Total Cost: ${quote.totalCosts} </p>
-      <Button handleClick={getQuote}>GET QUOTE</Button>
+      <label htmlFor='quantity'>Quantity (1-20) </label>
+      <input
+        name='quantity'
+        type='number'
+        placeholder='1'
+        min='1'
+        max='20'
+        value={quantity}
+        onChange={handleQuanityChange}
+        className={styles.input}
+      />
+      <button className={styles.button} onClick={getQuote}>
+        GET QUOTE
+      </button>
     </div>
   );
 }

@@ -13,15 +13,22 @@ The images start from the beginning of 2022 and increases with each passing day.
 ## Dependencies
 
 - NASA APOD API
-- Prodogi API
+- Prodigi API
 - React
 - React router
 - Font awesome
 
 ## Ways to make the app better
 
-- An order form where users can input thier information and (pretend) put in a order for a print
+- An order form where users can input their information and (pretend) to put in a order for a print
 - ability for users to fine tune the quote with options from Prodigi, such as:
   - shipping speed
   - frame color
   - image print size
+
+TODO
+
+- refactor (especially order form)
+- clean up classnames
+- add environment flag for nasa fetch
+- deploy!

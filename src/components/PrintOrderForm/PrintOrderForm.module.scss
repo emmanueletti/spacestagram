@@ -1,0 +1,13 @@
+@import '~@shopify/polaris-tokens/dist/index';
+
+.input {
+  padding: 0.5em;
+}
+
+.button {
+  width: 100%;
+  padding: 1rem;
+  background-color: $color-green;
+  color: white;
+  margin-top: 1rem;
+}
