@@ -20,7 +20,7 @@ export default function AppLayout({ children }) {
   };
   const averageCardHeight = 400;
   const handleScrollEvent = () => {
-    if (window.pageYOffset > averageCardHeight) {
+    if (window.pageYOffset > averageCardHeight * 1.5) {
       setScrollBtn(true);
     } else {
       setScrollBtn(false);

@@ -27,8 +27,7 @@ export default function PrintOrderForm() {
   });
 
   // On initial load, and everytime providedImages internally changes (due to page refresh
-  // and broser naviagtion), save info to
-  // local storage
+  // and broser naviagtion), save info to local storage
   useEffect(() => {
     if (!filteredImage[0]) return;
     if (filteredImage[0].date !== localImage.date) {

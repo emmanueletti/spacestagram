@@ -20,7 +20,7 @@ The images start from the beginning of 2022 and increases with each passing day.
 - React router
 - Font awesome
 
-### Ways to make the app better
+### Ways to make the app even better
 
 - An order form where users can input their information and (pretend) to put in a order for a print
 - ability for users to fine tune the quote with options from Prodigi, such as:

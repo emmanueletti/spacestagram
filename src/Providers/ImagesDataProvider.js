@@ -17,6 +17,7 @@ export default function ImagesDataProvider({ children }) {
       })
       .catch((err) => new Error(err));
   }, []);
+
   return (
     <ImagesDataContext.Provider value={imagesData}>
       {children}

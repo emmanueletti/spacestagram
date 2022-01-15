@@ -16,8 +16,11 @@ export default function usePrintOrderForm() {
   };
 
   const getQuote = () => {
+    setState((prev) => {
+      return { ...prev, loading: true };
+    });
     fetch(
-      `https://etti-personal-cors-proxy.herokuapp.com/get-quote?quantity=${state.quantity}`
+      `https://etti-personal-cors-proxy.herokuapp.com/quote?quantity=${state.quantity}`
     )
       .then((resp) => resp.json())
       .then((data) => {
